@@ -2,7 +2,7 @@
 
 export const Routes = {
     // pages
-    Presentation: { path: "/" },
+    FileList: { path: "/" },
     DashboardOverview: { path: "/dashboard/overview" },
     DashboardTraffic: { path: "/dashboard/traffic-and-engagement" },
     DashboardProductAnalysis: { path: "/dashboard/product-analysis" },
@@ -11,6 +11,7 @@ export const Routes = {
     SingleMessage: { path: "/message" },
     Users: { path: "/users" },
     Transactions: { path: "/transactions" },
+    // FileList: { path: "/filelist" },
     Tasks: { path: "/tasks" },
     Settings: { path: "/settings" },
     Calendar: { path: "/calendar" },

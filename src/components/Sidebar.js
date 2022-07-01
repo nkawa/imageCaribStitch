@@ -134,7 +134,7 @@ export default (props = {}) => {
               </Nav.Link>
             </div>
             <Nav className="flex-column pt-3 pt-md-0">
-              <NavItem title="Volt Pro React" link={Routes.Presentation.path} image={ReactHero} />
+              <NavItem title="ImageStitch" link={Routes.FileList.path} image={ReactHero} />
 
               <CollapsableNavItem eventKey="dashboard/" title="Dashboard" icon={ChartBarIcon}>
                 <NavItem title="Overview" link={Routes.DashboardOverview.path} />

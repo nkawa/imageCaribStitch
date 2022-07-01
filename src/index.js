@@ -25,13 +25,13 @@ import "leaflet/dist/leaflet.css";
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import "react-datetime/css/react-datetime.css";
 
-import HomePage from "./pages/HomePage";
+import StitchMain from "./pages/StitchMain";
 import ScrollToTop from "./components/ScrollToTop";
 
 ReactDOM.render(
   <HashRouter>
     <ScrollToTop />
-    <HomePage />
+    <StitchMain />
   </HashRouter>
   , document.getElementById("root")
 );
