@@ -499,7 +499,7 @@ export const FileTable = (props) => {
     // fdir 
     // fname (basename)
     // camera
-    console.log("Props:",props)
+//    console.log("Props:",props)
 //    console.log("Fname in table", fname);
     if (fname === undefined){
       fname="/undefined/fname"
@@ -536,10 +536,10 @@ export const FileTable = (props) => {
               <DotsHorizontalIcon className="icon icon-xs icon-dark" />
             </Dropdown.Toggle>
             <Dropdown.Menu className="py-0">
-              <Dropdown.Item as={Link} to={Routes.Invoice.path}>
+              <Dropdown.Item as={Link} to={Routes.ViewVideo.path}>
                 <EyeIcon className="icon icon-xs me-2" /> View Images
               </Dropdown.Item>
-              <Dropdown.Item as={Link} to={Routes.Invoice.path}>
+              <Dropdown.Item as={Link} to={Routes.ViewVideo.path+"/"+camera+"/"+fn}>
                 <PencilAltIcon className="icon icon-xs me-2" /> Edit
               </Dropdown.Item>
               <Dropdown.Item>
@@ -566,7 +566,7 @@ export const FileTable = (props) => {
             </tr>
           </thead>
           <tbody className="border-0">
-            {files.map(t => <TableRow key={`transaction-${t.invoiceNumber}`} {...t} />)}
+            {files.map(t => <TableRow key={`videofile-${t.key}`} {...t} />)}
           </tbody>
         </Table>
         <Card.Footer className="px-3 border-0 d-flex flex-column flex-lg-row align-items-center justify-content-between">

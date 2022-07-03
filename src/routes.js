@@ -20,6 +20,7 @@ export const Routes = {
     BootstrapTables: { path: "/tables/bootstrap-tables" },
     Pricing: { path: "/examples/pricing" },
     Billing: { path: "/examples/billing" },
+    ViewVideo: { path: "/video/view" },
     Invoice: { path: "/examples/invoice" },
     Signin: { path: "/examples/sign-in" },
     Signup: { path: "/examples/sign-up" },
