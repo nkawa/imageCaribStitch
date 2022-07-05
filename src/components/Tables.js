@@ -492,7 +492,7 @@ export const FileTable = (props) => {
   const totalFiles = files.length;
 
   const TableRow = (props) => {
-    let { fname , fdate,  fhuman } = props;
+    let { fname ,  fhuman } = props;
     if (fname === undefined){
       fname="/undefined/fname"
     }
@@ -515,11 +515,6 @@ export const FileTable = (props) => {
           </span>
         </td>
         <td>
-          <span className="fw-normal">
-            {fdate}
-          </span>
-        </td>
-        <td>
           <span className="fw-bold">
             {fhuman}
           </span>
@@ -536,8 +531,9 @@ export const FileTable = (props) => {
               <Dropdown.Item as={Link} to={Routes.ViewVideo.path+"/"+camera+"/"+fn}>
                 <PencilAltIcon className="icon icon-xs me-2" /> CapVideo
               </Dropdown.Item>
-              <Dropdown.Item as={Link} to={Routes.VideoCarib.path+"/"+camera+"/"+fn}>
-                <PencilAltIcon className="icon icon-xs text-danger me-2" /> CapChange
+              <Dropdown.Item as={Link} to={Routes.ViewCarib.path+"/"+camera+"/"+fn}>
+                <PencilAltIcon className="icon icon-xs text-danger me-2" /> 
+                  キャリブレーション変更
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
@@ -554,7 +550,6 @@ export const FileTable = (props) => {
             <tr>
               <th className="border-gray-200">Camera</th>
               <th className="border-gray-200">FileName</th>
-              <th className="border-gray-200">Date</th>
               <th className="border-gray-200">Total</th>
               <th className="border-gray-200">Action</th>
             </tr>

@@ -1,5 +1,5 @@
 
-import React, { useRef, useEffect , useState} from "react";
+import React, { useRef, useEffect ,useCallback, useState} from "react";
 import Plyr from "plyr";
 //import "plyr-react/plyr.css";
 import { Col, Row, Card, Button, Image } from 'react-bootstrap';
@@ -10,34 +10,6 @@ import { Col, Row, Card, Button, Image } from 'react-bootstrap';
 //import { Link } from "react-router-dom";
 //import { Routes } from "routes";
 import axios from "axios";
-
-
-
-const options = {
-  enabled: true,
-  autoplay: true,
-  muted: true,
-  playsinline: true,
-  clickToPlay: false,
-  controls: [
-    "play-large",
-    "play",
-    "progress",
-    "current-time",
-    "mute",
-    "volume",
-    "captions",
-    "settings",
-    "pip",
-    "airplay",
-    "fullscreen"
-  ],
-  tooltips: { controls: true, seek: true },
-  settings: ["captions", "quality", "speed", "loop"],
-  speed: { selected: 1, options: [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2] },
-  captions: { active: false, language: "auto", update: true },
-  loop: { active: true }
-};
 
 
 function getCookie(name) {
@@ -58,12 +30,12 @@ function getCookie(name) {
 export default (props) => {
   const {match} = props;
 //  console.log("ViewVideo props",props,match)
-  let playerRef = useRef({});
+  const playerRef = useRef({});
   const [imageURL, setImageURL] = useState("");
   const [timeTxt, setTimeTxt] = useState("0");
   const src = "/static/"+match.params.camera+"/"+match.params.fname
 //  var csrftoken
-  const setupPlyr = () => {
+  const setupPlyr = useCallback(() => {
     playerRef.current.plyr =
       new Plyr(document.getElementById('plyr'), {
         title: match.params.fname,
@@ -90,7 +62,7 @@ export default (props) => {
     playerRef.current.plyr.on('timeupdate', ()=>{
       setTimeTxt(playerRef.current.plyr.currentTime.toString(10));
     });
-  }
+  },[match,src]);
 
 
   useEffect(()=>{
@@ -100,7 +72,7 @@ export default (props) => {
       'X-Requested-With': 'XMLHttpRequest',
       'X-CSRFToken' : csrftoken };
     setupPlyr()
-  },[]);
+  },[setupPlyr]);
 
   const handleCapture = (e)=>{
     const plr = playerRef.current

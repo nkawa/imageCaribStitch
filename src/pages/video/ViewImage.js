@@ -1,9 +1,10 @@
 
-import React, { useRef, useEffect , useState} from "react";
+import React, {  useCallback, useEffect , useState} from "react";
 import { Col, Row, Card, Button, Image } from 'react-bootstrap';
 import axios from "axios";
 
-
+// キャリブレーションされたイメージ一覧
+// キャリブありも
 
 
 export default (props) => {
@@ -11,23 +12,15 @@ export default (props) => {
 //  console.log("ViewVideo props",props,match)
 //  let playerRef = useRef(null);
   const [imageURLs, setImageURLs] = useState([]);
-  const [caribTxt, setCaribTxt] = useState("test carib data");
-  const src = "/static/"+match.params.camera+"/"+match.params.fname
-  useEffect(()=>{
-    handleList(null);
-  },[]);
-
-  const handleList = (e)=>{
-//    const plr = playerRef.current
-//    console.log("Capture!", plr.plyr.currentTime, src);
-    
+//  const [caribTxt, setCaribTxt] = useState("test carib data");
+//  const src = "/static/"+match.params.camera+"/"+match.params.fname
+  const handleList = useCallback((e)=>{    
     axios.get('/api/imageList/',{
       params:{
           fname: match.params.fname,
       }
     })
       .then((res) => {
-//          setCaribTxt(res.data.json)
           const imlist =res.data;
           console.log("Response:",imlist);
           let urls = []
@@ -36,16 +29,14 @@ export default (props) => {
             urls.push("/static/"+im.cfile);
           }
           setImageURLs(urls);
-
-//          setImageURL("/static/"+res.data.cfile);
-//          console.log("SetTime:",res.data.time);
-  //        plr.plyr.currentTime = res.data.time;
-//          console.log("GetTime:",plr.plyr.currentTime);
-
       });
+  },[match]);
+
+  useEffect(()=>{
+    handleList(null);
+  },[handleList]);
 
 
-  }
 
   return (
     <>

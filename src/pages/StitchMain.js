@@ -25,6 +25,7 @@ import Billing from "pages/examples/Billing";
 import Invoice from "pages/examples/Invoice";
 import ViewImage from "pages/video/ViewImage";
 import ViewVideo from "pages/video/ViewVideo";
+import ViewCarib from "pages/video/ViewCarib";
 import Signin from "pages/examples/Signin";
 import Signup from "pages/examples/Signup";
 import ForgotPassword from "pages/examples/ForgotPassword";
@@ -54,7 +55,7 @@ import PluginSweetAlert from "pages/plugins/SweetAlert";
 // components
 import Sidebar from 'components/Sidebar';
 import Topbar from 'components/Topbar';
-import Footer from 'components/Footer';
+// import Footer from 'components/Footer';
 
 import Accordion from "pages/components/Accordion";
 import Alerts from "pages/components/Alerts";
@@ -89,13 +90,13 @@ const RouteWithSidebar = ({ component: Component, ...rest }) => {
     return localStorage.getItem('sidebarContracted') === 'false' ? false : true
   }
 
-  const localStorageIsSettingsVisible = () => {
-    return localStorage.getItem('settingsVisible') === 'false' ? false : true
-  }
+//  const localStorageIsSettingsVisible = () => {
+//    return localStorage.getItem('settingsVisible') === 'false' ? false : true
+//  }
 
   const [contracted, setContracted] = useState(localStorageIsContracted());
   const [contractSidebar, setContractSidebar] = useState(localStorageIsContracted());
-  const [showSettings, setShowSettings] = useState(localStorageIsSettingsVisible);
+//  const [showSettings, setShowSettings] = useState(localStorageIsSettingsVisible);
 
   const toggleMouseOver = () => {
     if (contracted) {
@@ -111,10 +112,10 @@ const RouteWithSidebar = ({ component: Component, ...rest }) => {
     resize();
   };
 
-  const toggleSettings = () => {
-    setShowSettings(!showSettings);
-    localStorage.setItem('settingsVisible', !showSettings);
-  }
+//  const toggleSettings = () => {
+//    setShowSettings(!showSettings);
+//    localStorage.setItem('settingsVisible', !showSettings);
+//  }
 
   return (
     <Route {...rest} render={props => (
@@ -128,8 +129,9 @@ const RouteWithSidebar = ({ component: Component, ...rest }) => {
         <main className="content">
           <Topbar toggleContracted={toggleContracted} />
           <Component {...props} />
-          <Footer toggleSettings={toggleSettings} showSettings={showSettings} />
-        </main>
+{/*          <Footer toggleSettings={toggleSettings} showSettings={showSettings} />
+ */}
+       </main>
       </>
     )}
     />
@@ -169,6 +171,7 @@ export default () => (
  {/*  <RouteWithSidebar exact path={Routes.ViewVideo.path} component={ViewVideo} />*/}
     <RouteWithSidebar path={Routes.ViewImage.path+"/:camera/:fname"} component={ViewImage} />
     <RouteWithSidebar path={Routes.ViewVideo.path+"/:camera/:fname"} component={ViewVideo} />
+    <RouteWithSidebar path={Routes.ViewCarib.path+"/:camera/:fname"} component={ViewCarib} />
 
     {/* components */}
     <RouteWithSidebar exact path={Routes.Accordions.path} component={Accordion} />

@@ -1,23 +1,19 @@
 
-import React, { useRef, useEffect , useState} from "react";
+import React, {  useEffect , useState, useCallback} from "react";
 import { Col, Row, Card, Button, Image } from 'react-bootstrap';
 import axios from "axios";
 
-
-
+// キャリブレーションを変更したい
 
 export default (props) => {
   const {match} = props;
 //  console.log("ViewVideo props",props,match)
 //  let playerRef = useRef(null);
   const [imageURLs, setImageURLs] = useState([]);
-  const [caribTxt, setCaribTxt] = useState("test carib data");
-  const src = "/static/"+match.params.camera+"/"+match.params.fname
-  useEffect(()=>{
-    handleList(null);
-  },[]);
+//  const [caribTxt, setCaribTxt] = useState("test carib data");
+//  const src = "/static/"+match.params.camera+"/"+match.params.fname
 
-  const handleList = (e)=>{
+  const handleList = useCallback((e)=>{
 //    const plr = playerRef.current
 //    console.log("Capture!", plr.plyr.currentTime, src);
     
@@ -43,9 +39,11 @@ export default (props) => {
 //          console.log("GetTime:",plr.plyr.currentTime);
 
       });
-
-
-  }
+  },[match]);
+//  const listCallback = useCallback(handle)
+useEffect(()=>{
+  handleList(null);
+});
 
   return (
     <>

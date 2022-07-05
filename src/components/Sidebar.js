@@ -10,7 +10,8 @@ import { Nav, Badge, Image, Button, Dropdown, Navbar, Collapse, Col } from 'reac
 import { Link } from 'react-router-dom';
 
 import { Routes } from "routes";
-import ReactHero from "assets/img/technologies/react-hero-logo.svg";
+import TMIDark from "assets/img/brand/TMI_Logo_Dark_130.png";
+//import ReactHero from "assets/img/technologies/react-hero-logo.svg";
 import ProfilePicture from "assets/img/team/profile-picture-3.jpg";
 
 export default (props = {}) => {
@@ -106,7 +107,7 @@ export default (props = {}) => {
     <>
       <Navbar as={Col} xs={12} expand={false} collapseOnSelect variant="dark" className="navbar-theme-primary px-4 d-lg-none">
         <Navbar.Brand as={Link} to={Routes.DashboardOverview.path} className="me-lg-5">
-          <Image src={ReactHero} className="navbar-brand-dark" />
+          <Image src={TMIDark} className="navbar-brand-dark" />
         </Navbar.Brand>
         <div className="d-flex align-items-center">
           <Navbar.Toggle as={Button} onClick={onCollapse}>
@@ -134,7 +135,7 @@ export default (props = {}) => {
               </Nav.Link>
             </div>
             <Nav className="flex-column pt-3 pt-md-0">
-              <NavItem title="ImageStitch" link={Routes.FileList.path} image={ReactHero} />
+              <NavItem title="ImageStitch" link={Routes.FileList.path} image={TMIDark} />
 
               <CollapsableNavItem eventKey="dashboard/" title="Dashboard" icon={ChartBarIcon}>
                 <NavItem title="Overview" link={Routes.DashboardOverview.path} />

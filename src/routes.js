@@ -22,6 +22,7 @@ export const Routes = {
     Billing: { path: "/examples/billing" },
     ViewImage: { path: "/video/image" },
     ViewVideo: { path: "/video/view" },
+    ViewCarib: { path: "/video/carib" },
     Invoice: { path: "/examples/invoice" },
     Signin: { path: "/examples/sign-in" },
     Signup: { path: "/examples/sign-up" },
