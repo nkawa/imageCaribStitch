@@ -19,12 +19,16 @@ export default () => {
   const changeSearchValue = (e) => {
     const newSearchValue = e.target.value;
     const newFiles = files.map(t => {
-      console.log("NewFiles!!",t)
-      const subscription = t.subscription.toLowerCase();
+      let shouldShow = true;
+      if (t.fname.indexOf(newSearchValue) === -1){
+        shouldShow = false;
+      }
+//      console.log("NewFiles!!",e,t)
+/*      const subscription = t.subscription.toLowerCase();
       const shouldShow = subscription.includes(newSearchValue)
         || t.status.includes(newSearchValue)
         || `${t.invoiceNumber}`.includes(newSearchValue);
-
+*/
       return ({ ...t, show: shouldShow });
     });
 
@@ -57,7 +61,7 @@ export default () => {
           fdata.push({...dt[i], key: i, show:true});
         }
 //        const fdata = res.data.map(f =>({...f, show:true}));
-        console.log("Fdata set!", fdata.length);
+//        console.log("Fdata set!", fdata.length);
         setFiles(fdata);
       });
   }

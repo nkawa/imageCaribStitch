@@ -493,14 +493,6 @@ export const FileTable = (props) => {
 
   const TableRow = (props) => {
     let { fname , fdate,  fhuman } = props;
-//    const statusVariant = status === "paid" ? "success"
-//      : status === "due" ? "warning"
-//        : status === "cancelled" ? "danger" : "primary";
-    // fdir 
-    // fname (basename)
-    // camera
-//    console.log("Props:",props)
-//    console.log("Fname in table", fname);
     if (fname === undefined){
       fname="/undefined/fname"
     }
@@ -517,7 +509,9 @@ export const FileTable = (props) => {
         </td>
         <td>
           <span className="fw-normal">
+            <a href={"#"+Routes.ViewVideo.path+"/"+camera+"/"+fn}>
             {fn}
+            </a>
           </span>
         </td>
         <td>
@@ -536,14 +530,14 @@ export const FileTable = (props) => {
               <DotsHorizontalIcon className="icon icon-xs icon-dark" />
             </Dropdown.Toggle>
             <Dropdown.Menu className="py-0">
-              <Dropdown.Item as={Link} to={Routes.ViewVideo.path}>
+              <Dropdown.Item as={Link} to={Routes.ViewImage.path+"/"+camera+"/"+fn}>
                 <EyeIcon className="icon icon-xs me-2" /> View Images
               </Dropdown.Item>
               <Dropdown.Item as={Link} to={Routes.ViewVideo.path+"/"+camera+"/"+fn}>
-                <PencilAltIcon className="icon icon-xs me-2" /> Edit
+                <PencilAltIcon className="icon icon-xs me-2" /> CapVideo
               </Dropdown.Item>
-              <Dropdown.Item>
-                <TrashIcon className="icon icon-xs text-danger me-2" /> Remove
+              <Dropdown.Item as={Link} to={Routes.VideoCarib.path+"/"+camera+"/"+fn}>
+                <PencilAltIcon className="icon icon-xs text-danger me-2" /> CapChange
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
@@ -570,6 +564,7 @@ export const FileTable = (props) => {
           </tbody>
         </Table>
         <Card.Footer className="px-3 border-0 d-flex flex-column flex-lg-row align-items-center justify-content-between">
+            {/*
           <Nav>
             <Pagination className="mb-0">
               <Pagination.Prev>
@@ -585,8 +580,9 @@ export const FileTable = (props) => {
               </Pagination.Next>
             </Pagination>
           </Nav>
+  */}
           <small className="fw-normal mt-4 mt-lg-0">
-            Showing <b>{totalFiles}</b> out of <b>25</b> entries
+            Showing <b>{totalFiles}</b> out of <b>{totalFiles}</b> entries
           </small>
         </Card.Footer>
       </Card.Body>

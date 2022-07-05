@@ -23,6 +23,7 @@ import BootstrapTables from "pages/tables/BootstrapTables";
 import Pricing from "pages/examples/Pricing";
 import Billing from "pages/examples/Billing";
 import Invoice from "pages/examples/Invoice";
+import ViewImage from "pages/video/ViewImage";
 import ViewVideo from "pages/video/ViewVideo";
 import Signin from "pages/examples/Signin";
 import Signup from "pages/examples/Signup";
@@ -166,6 +167,7 @@ export default () => (
     <RouteWithSidebar exact path={Routes.Billing.path} component={Billing} />
     <RouteWithSidebar exact path={Routes.Invoice.path} component={Invoice} />
  {/*  <RouteWithSidebar exact path={Routes.ViewVideo.path} component={ViewVideo} />*/}
+    <RouteWithSidebar path={Routes.ViewImage.path+"/:camera/:fname"} component={ViewImage} />
     <RouteWithSidebar path={Routes.ViewVideo.path+"/:camera/:fname"} component={ViewVideo} />
 
     {/* components */}
