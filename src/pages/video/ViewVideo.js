@@ -10,22 +10,7 @@ import { Col, Row, Card, Button, Image } from 'react-bootstrap';
 //import { Link } from "react-router-dom";
 //import { Routes } from "routes";
 import axios from "axios";
-
-
-function getCookie(name) {
-  var cookieValue = null;
-  if (document.cookie && document.cookie !== '') {
-      var cookies = document.cookie.split(';');
-      for (var i = 0; i < cookies.length; i++) {
-          var cookie = cookies[i].trim();
-          if (cookie.substring(0, name.length + 1) === (name + '=')) {
-              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-              break;
-          }
-      }
-  }
-  return cookieValue;
-}
+import getCookie from "pages/video/csrfUtil";
 
 export default (props) => {
   const {match} = props;
@@ -34,6 +19,8 @@ export default (props) => {
   const [imageURL, setImageURL] = useState("");
   const [timeTxt, setTimeTxt] = useState("0");
   const src = "/static/"+match.params.camera+"/"+match.params.fname
+  const isrc = match.params.camera+"/"+match.params.fname
+
 //  var csrftoken
   const setupPlyr = useCallback(() => {
     playerRef.current.plyr =
@@ -108,6 +95,12 @@ export default (props) => {
     <>
       <Row className="justify-content-center mt-4">
         <Col xs={12} xl={9}>
+
+        　
+          <Button type="button" href={"/#/video/image/"+isrc}>Image</Button>　
+          <Button type="button" href={"/#/video/carib/"+isrc}>Capt</Button>　
+          <Button type="button" href={"/#/video/genCarib/"+isrc}>Carib</Button>
+          
           <Card border="0" className="shadow position-relative p-4 p-md-5">
               {src}:{timeTxt}
               {/* plyr-react を使うと、なぜか rewriteされる */}

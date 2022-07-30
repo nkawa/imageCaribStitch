@@ -8,7 +8,8 @@ import { Routes } from "routes";
 import DashboardOverview from "pages/dashboard/DashboardOverview";
 import DashboardTraffic from "pages/dashboard/DashboardTraffic";
 import DashboardProductAnalysis from "pages/dashboard/DashboardProductAnalysis";
-import Kanban from 'pages/Kanban';
+//import Kanban from 'pages/Kanban';
+import CaribImage from 'pages/video/CaribImage';
 import Messages from "pages/Messages";
 import SingleMessage from "pages/SingleMessage";
 import Users from "pages/Users";
@@ -26,6 +27,8 @@ import Invoice from "pages/examples/Invoice";
 import ViewImage from "pages/video/ViewImage";
 import ViewVideo from "pages/video/ViewVideo";
 import ViewCarib from "pages/video/ViewCarib";
+import GenCarib from "pages/video/GenCarib";
+import EditCarib from "pages/video/EditCarib";
 import Signin from "pages/examples/Signin";
 import Signup from "pages/examples/Signup";
 import ForgotPassword from "pages/examples/ForgotPassword";
@@ -137,7 +140,9 @@ const RouteWithSidebar = ({ component: Component, ...rest }) => {
     />
   );
 };
-//    {/* <Route exact path={Routes.Presentation.path} component={Presentation} /> */}
+//    {/* <Route exact path={Routes.Presentation.path} component={Presentation} /> 
+//<RouteWithSidebar exact path={Routes.Kanban.path} component={Kanban} />
+//*/}
 
 export default () => (
   <Switch>
@@ -153,7 +158,7 @@ export default () => (
     <RouteWithSidebar exact path={Routes.DashboardOverview.path} component={DashboardOverview} />
     <RouteWithSidebar exact path={Routes.DashboardTraffic.path} component={DashboardTraffic} />
     <RouteWithSidebar exact path={Routes.DashboardProductAnalysis.path} component={DashboardProductAnalysis} />
-    <RouteWithSidebar exact path={Routes.Kanban.path} component={Kanban} />
+    <RouteWithSidebar exact path={Routes.CaribImage.path} component={CaribImage} />
     <RouteWithSidebar exact path={Routes.Messages.path} component={Messages} />
     <RouteWithSidebar exact path={Routes.SingleMessage.path} component={SingleMessage} />
     <RouteWithSidebar exact path={Routes.Users.path} component={Users} />
@@ -172,6 +177,8 @@ export default () => (
     <RouteWithSidebar path={Routes.ViewImage.path+"/:camera/:fname"} component={ViewImage} />
     <RouteWithSidebar path={Routes.ViewVideo.path+"/:camera/:fname"} component={ViewVideo} />
     <RouteWithSidebar path={Routes.ViewCarib.path+"/:camera/:fname"} component={ViewCarib} />
+    <RouteWithSidebar path={Routes.GenCarib.path+"/:camera/:fname"} component={GenCarib} />
+    <RouteWithSidebar path={Routes.EditCarib.path+"/:camera/:fname"} component={EditCarib} />
 
     {/* components */}
     <RouteWithSidebar exact path={Routes.Accordions.path} component={Accordion} />

@@ -535,6 +535,13 @@ export const FileTable = (props) => {
                 <PencilAltIcon className="icon icon-xs text-danger me-2" /> 
                   キャリブレーション変更
               </Dropdown.Item>
+              <Dropdown.Item as={Link} to={Routes.GenCarib.path+"/"+camera+"/"+fn}>
+                <PencilAltIcon className="icon icon-xs text-danger me-2" /> 
+                  キャリブレーション作成
+              </Dropdown.Item>
+              <Dropdown.Item as={Link} to={Routes.EditCarib.path+"/"+camera+"/"+fn}>
+                  キャリブレーション編集
+              </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </td>
@@ -633,6 +640,112 @@ export const CommandsTable = () => {
             {commands.map(c => <TableRow key={`command-${c.id}`} {...c} />)}
           </tbody>
         </Table>
+      </Card.Body>
+    </Card>
+  );
+};
+
+
+export const CaribImageTable = (props) => {
+  const { files } = props;
+  const totalFiles = files.length;
+
+  const TableRow = (props) => {
+    let { fname ,  fhuman } = props;
+    if (fname === undefined){
+      fname="/undefined/fname"
+    }
+ //   console.log("Fname in table2", fname);
+    let pathcomp = fname.split("/");
+    const fn = pathcomp[pathcomp.length-1];
+    const camera = pathcomp[pathcomp.length-2];
+    return (
+      <tr className="border-bottom">
+        <td>
+          <span className="fw-normal">
+            {camera}
+          </span>
+        </td>
+        <td>
+          <span className="fw-normal">
+            <a href={"#"+Routes.ViewVideo.path+"/"+camera+"/"+fn}>
+            {fn}
+            </a>
+          </span>
+        </td>
+        <td>
+          <span className="fw-bold">
+            {fhuman}
+          </span>
+        </td>
+        <td className="text-center">
+          <Dropdown as={ButtonGroup}>
+            <Dropdown.Toggle as={Button} split variant="link" className="text-dark m-0 p-0">
+              <DotsHorizontalIcon className="icon icon-xs icon-dark" />
+            </Dropdown.Toggle>
+            <Dropdown.Menu className="py-0">
+              <Dropdown.Item as={Link} to={Routes.ViewImage.path+"/"+camera+"/"+fn}>
+                <EyeIcon className="icon icon-xs me-2" /> View Images
+              </Dropdown.Item>
+              <Dropdown.Item as={Link} to={Routes.ViewVideo.path+"/"+camera+"/"+fn}>
+                <PencilAltIcon className="icon icon-xs me-2" /> CapVideo
+              </Dropdown.Item>
+              <Dropdown.Item as={Link} to={Routes.ViewCarib.path+"/"+camera+"/"+fn}>
+                <PencilAltIcon className="icon icon-xs text-danger me-2" /> 
+                  キャリブレーション変更
+              </Dropdown.Item>
+              <Dropdown.Item as={Link} to={Routes.GenCarib.path+"/"+camera+"/"+fn}>
+                <PencilAltIcon className="icon icon-xs text-danger me-2" /> 
+                  キャリブレーション作成
+              </Dropdown.Item>
+              <Dropdown.Item as={Link} to={Routes.EditCarib.path+"/"+camera+"/"+fn}>
+                  キャリブレーション編集
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </td>
+      </tr>
+    );
+  };
+
+  return (
+    <Card border="0" className="table-wrapper table-responsive shadow">
+      <Card.Body>
+        <Table hover>
+          <thead>
+            <tr>
+              <th className="border-gray-200">Camera</th>
+              <th className="border-gray-200">FileName</th>
+              <th className="border-gray-200">Total</th>
+              <th className="border-gray-200">Action</th>
+            </tr>
+          </thead>
+          <tbody className="border-0">
+            {files.map(t => <TableRow key={`videofile-${t.key}`} {...t} />)}
+          </tbody>
+        </Table>
+        <Card.Footer className="px-3 border-0 d-flex flex-column flex-lg-row align-items-center justify-content-between">
+            {/*
+          <Nav>
+            <Pagination className="mb-0">
+              <Pagination.Prev>
+                Previous
+              </Pagination.Prev>
+              <Pagination.Item active>1</Pagination.Item>
+              <Pagination.Item>2</Pagination.Item>
+              <Pagination.Item>3</Pagination.Item>
+              <Pagination.Item>4</Pagination.Item>
+              <Pagination.Item>5</Pagination.Item>
+              <Pagination.Next>
+                Next
+              </Pagination.Next>
+            </Pagination>
+          </Nav>
+  */}
+          <small className="fw-normal mt-4 mt-lg-0">
+            Showing <b>{totalFiles}</b> out of <b>{totalFiles}</b> entries
+          </small>
+        </Card.Footer>
       </Card.Body>
     </Card>
   );

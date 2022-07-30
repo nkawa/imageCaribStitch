@@ -13,7 +13,7 @@ export default (props) => {
 //  let playerRef = useRef(null);
   const [imageURLs, setImageURLs] = useState([]);
 //  const [caribTxt, setCaribTxt] = useState("test carib data");
-//  const src = "/static/"+match.params.camera+"/"+match.params.fname
+  const isrc = match.params.camera+"/"+match.params.fname
   const handleList = useCallback((e)=>{    
     axios.get('/api/imageList/',{
       params:{
@@ -54,6 +54,11 @@ export default (props) => {
 
             List
           </Button>
+          　
+          <Button type="button" href={"/#/video/image/"+isrc}>ImageList</Button>　
+          <Button type="button" href={"/#/video/carib/"+isrc}>Conv</Button>
+          <Button type="button" href={"/#/video/genCarib/"+isrc}>Carib</Button>　
+         
             {/* ここにキャプチャ画像を貼りたい */}
           <Card>
             {

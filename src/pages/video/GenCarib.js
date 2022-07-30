@@ -4,11 +4,10 @@ import { Col, Row, Card, Button, Image,Form } from 'react-bootstrap';
 import axios from "axios";
 import getCookie from "pages/video/csrfUtil";
 
-//import { Dropdown.Item } from "bootstrap";
 
-// キャリブレーションを変更したい
-// 違うカメラのキャリブレーションファイルだと
-// どうなるのか？
+// 各カメラから、チェスボードを認識して、
+// その結果から、キャリブレーション　matrix を作成して、保存！
+
 
 // caribBase
 const caribBase = ['A','B','C','D','E','F','G'];
@@ -23,10 +22,10 @@ export default (props) => {
   const [convURLs, setConvURLs] = useState([]);
 //  const [caribTxt, setCaribTxt] = useState("test carib data");
 //  const src = "/static/"+match.params.camera+"/"+match.params.fname
-  const [caribCam, setCaribCam] = useState("A");
-  const [caribNum, setCaribNum] = useState(1);
   const isrc = match.params.camera+"/"+match.params.fname
 
+  const [caribCam, setCaribCam] = useState("A");
+  const [caribNum, setCaribNum] = useState(1);
 
   const changeCaribCam = (e) => {
     setCaribCam(e.target.value);
@@ -39,8 +38,8 @@ export default (props) => {
   const convImg = (f,i) =>{
     const c = document.getElementById("cam").value;
     const n = document.getElementById("num").value;
-    console.log("Convert image ",f,"with", c,n);
-    axios.post('/api/convImage',{
+//    console.log("Convert image ",f,"with", c,n);
+    axios.post('/api/findChecker',{
         conv: c+n,
         fname: f,
         num: i,
@@ -54,6 +53,22 @@ export default (props) => {
     });
     
   };
+
+  // ファイル一覧に対し、checkerを探し、キャリブレーションを行う
+  const GenCaribAll = ()=>{
+    axios.post('/api/genCarib',{
+          fname: match.params.fname,
+    }).then((res)=>{
+      const iconv =res.data;
+      console.log(iconv);
+      let nurls = [...convURLs]
+      nurls[0]="/static/"+iconv.cfile;      
+      setConvURLs(nurls);
+
+    });
+
+  }
+
 
   const handleList = useCallback((e)=>{
 //    const plr = playerRef.current
@@ -106,9 +121,10 @@ useEffect(()=>{
             {/*<PencilAltIcon className="icon icon-xs me-2" />*/}
             ShowList
           </Button>
-          <Button type="button" variant="secondary" className="d-inline-flex align-items-center mb-3 mb-md-0">
-
-            List
+          <Button type="button" variant="secondary" className="d-inline-flex align-items-center mb-3 mb-md-0"
+            onClick={GenCaribAll}
+          >
+            GenCarib
           </Button>
           <Form.Select id="cam" value={caribCam} className="fmxw-200 d-none d-md-inline" onChange={changeCaribCam}>
             {caribBase.map(c=>
@@ -122,9 +138,7 @@ useEffect(()=>{
           </Form.Select>　
           <Button type="button" href={"/#/video/view/"+isrc}>Capt</Button>　
           <Button type="button" href={"/#/video/image/"+isrc}>ImageList</Button>　
-          <Button type="button" href={"/#/video/genCarib/"+isrc}>Carib</Button>
-          
-
+          <Button type="button" href={"/#/video/carib/"+isrc}>Conv</Button>
           
             {/* ここにキャプチャ画像を貼りたい */}
           <Card>
@@ -136,7 +150,7 @@ useEffect(()=>{
               <Col xs={6}>
               <Image src={t} />
               <Button onClick={()=>convImg(t,i)} size="sm">
-              conv</Button>
+              Detect Checker</Button>
               </Col>
               <Col xs={6}>
               <Image src={convURLs[i]}/>
